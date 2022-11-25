@@ -41,3 +41,9 @@ class CadastrarAulaAPIView(APIView):
             },
             status=HTTP_400_BAD_REQUEST
         )    
+
+class AulaAPIView(APIView):
+    def get(self, request, format=None):
+        aula = Aula.objects.all()
+        serializer = AulaSerializer(aula, many=True)
+        return Response(serializer.data, status=HTTP_200_OK)
